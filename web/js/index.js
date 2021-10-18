@@ -1,11 +1,11 @@
-let web3;
 let contractAdress = '0x9Bc2dF8dc5Eb26D2cAd08766EC0c60674c0c7ABD';
+let contractPath = "contracts/MOTD.json"
+let web3ProviderUrl = "http://localhost:7545"
 
-
-
+let web3;
 
 try {            
-  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+  web3 = new Web3(new Web3.providers.HttpProvider(web3ProviderUrl));
 } catch (error) {
   alert(error)
 }
@@ -13,7 +13,7 @@ try {
 
 
 async function setupMotd(){
-  await $.getJSON("contracts/MOTD.json", function(result) {            
+  await $.getJSON(contractPath, function(result) {            
     abi = result.abi                
   });
   contractMotd = new web3.eth.Contract(
@@ -25,21 +25,25 @@ async function setupMotd(){
   })
 }
 
-setupMotd()
-
-async function requestWalletConnect(){
-  if (window.ethereum != null) {
-    state.web3 = new Web3(window.ethereum)
+function requestWalletConnect(){
+  if (window.ethereum) {
     try {
-      // Request account access if needed
-      await window.ethereum.enable()
-      // Acccounts now exposed
+      // ask user permission to access his accounts
+      window.ethereum.request({ method: "eth_requestAccounts" }).then(function(res){
+        //TODO
+      });
     } catch (error) {
-      // User denied account access...
+      console.log(error)
     }
+  
+  }else{
+    alert("Metamask requiered")
   }  
 }
 
+
+setupMotd()
+document.getElementById('signInBtn').onclick = requestWalletConnect
 
 
 
