@@ -18,5 +18,13 @@ contract TestBackground {
         motd.updateMessage(message);
         Assert.equal(message, motd.getMotd(), "Should give back the right value");
     }
+
+    function testOnlyOwnerChangeMotd() public {
+        address newOwner = address(uint160(uint(keccak256(abi.encodePacked(blockhash(block.number))))));
+        motd.transferOwnership(newOwner);
+        try motd.updateMessage("Doesnt work") {
+            Assert.isFalse(true, "Only the owner can change the MOTD");
+        } catch {} 
+    }
  
 }

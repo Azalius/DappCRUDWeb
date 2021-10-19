@@ -51,3 +51,13 @@
     }
   })
 })()
+
+
+
+function changeMotd(){
+  if(){
+    alert("You don't have the right to change the MOTD")
+  }else{
+    
+  }
+}
