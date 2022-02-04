@@ -5,16 +5,15 @@ async function changeMotd(){
       motdContractAbi,
        motdContractAdress
     );
-    //console.log(contractMotd)
+    let accounts = [];
 
-    //prm = await contractMotd.methods.owner().call()
-
-
+    accounts = await web3.eth.getAccounts()
     newMotd = prompt('New MOTD')
+  
     if (newMotd !== null){
-      contractMotd.methods.updateMessage(newMotd).call().then(function () {                
-       alert("Motd changed to "+newMotd)  
-    })
+      contractMotd.methods
+      .updateMessage(newMotd)
+      .send({from: accounts[0]}).then(() => alert("MOTD updated"))
   }
 }
 
