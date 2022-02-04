@@ -1,14 +1,9 @@
 
-
-
-
 async function setupMotd(){
-  await $.getJSON(contractPath, function(result) {            
-    abi = result.abi                
-  });
+  
   contractMotd = new web3.eth.Contract(
-    abi,
-     contractAdress
+    motdContractAbi,
+     motdContractAdress
   );
   motd = contractMotd.methods.getMotd().call().then(function (result) {                
     $('#motdField').html(result);
@@ -20,7 +15,7 @@ function requestWalletConnect(){
     try {
       // ask user permission to access his accounts
       window.ethereum.request({ method: "eth_requestAccounts" }).then(function(res){
-        document.location.href="dashboard.html"
+        document.location.href="mainPage.html"
       });
     } catch (error) {
       console.log(error)

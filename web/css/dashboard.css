@@ -41,6 +41,10 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
+.nav-link{
+  cursor:pointer;
+}
+
 .sidebar .nav-link {
   font-weight: 500;
   color: #333;

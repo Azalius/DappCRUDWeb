@@ -1,28 +1,28 @@
-const Crud = artifacts.require('UserList');
+const UserList = artifacts.require('UserList');
 
 contract('UserList', () => {
-  let crud = null;
+  let userList = null;
   before(async () => {
-    crud = await Crud.deployed();
+    userList = await UserList.deployed();
   });
 
   it('Should create a new user', async () => {
-    await crud.create('Frank');
-    const user = await crud.read(1);
+    await userList.create('Paul');
+    const user = await userList.read(1);
     assert(user[0].toNumber() === 1);
-    assert(user[1] === 'Frank');
+    assert(user[1] === 'Paul');
   });
 
   it('Should update an existing user', async () => {
-    await crud.update(1, 'Frankk');
-    const user = await crud.read(1);
+    await userList.update(1, 'Paull');
+    const user = await userList.read(1);
     assert(user[0].toNumber() === 1);
-    assert(user[1] === 'Frankk');
+    assert(user[1] === 'Paull');
   });
 
   it('Should NOT update a non-existing user', async () => {
     try {
-      await crud.update(2, 'Frankk');
+      await userList.update(2, 'Paull');
     } catch(e) {
       assert(e.message.includes('User does not exist'));
       return;
@@ -31,9 +31,9 @@ contract('UserList', () => {
   });
 
   it('Should destroy an existing user', async () => {
-    await crud.destroy(1);
+    await userList.destroy(1);
     try {
-      const user = await crud.read(1);
+      const user = await userList.read(1);
     } catch(e) {
       assert(e.message.includes('User does not exist!'));
       return;
@@ -43,11 +43,13 @@ contract('UserList', () => {
 
   it('Should NOT destroy a non-existing user', async () => {
     try {
-      await crud.destroy(10);
+      await userList.destroy(10);
     } catch(e) {
       assert(e.message.includes('User does not exist'));
       return;
     }
     assert(false);
   });
+
+  
 });
