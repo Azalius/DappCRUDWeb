@@ -8,17 +8,38 @@
             <div class="input-group-prepend">
             <button class="btn btn-outline-secondary">Add user</button>
             </div>
-            <input type="text" class="form-control" id="fieldName" placeholder="name">
+            <input type="text" class="form-control" id="addName" placeholder="Name">
         </div>
         </form>
     </div>
     <div class="col-md-6">
-        <form id="addUserForm">
+        <form id="getUserForm">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button">Button</button>
+            <button class="btn btn-outline-secondary" >Get user</button>
             </div>
-            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+            <input type="number" class="form-control" id ="getNum" placeholder="ID">
+        </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form id="updateUserForm">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary">Update user</button>
+            </div>
+            <input type="number" class="form-control" id="numUpdate" placeholder="ID">
+            <input type="text" class="form-control" id="nameUpdate" placeholder="New name">
+        </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form id="deleteUserForm">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary">Delete user</button>
+            </div>
+            <input type="number" class="form-control" id="deleteNum" placeholder="ID">
         </div>
         </form>
     </div>
