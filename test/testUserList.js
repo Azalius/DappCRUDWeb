@@ -1,3 +1,5 @@
+const { assert } = require("console");
+
 const UserList = artifacts.require('UserList');
 
 contract('UserList', () => {

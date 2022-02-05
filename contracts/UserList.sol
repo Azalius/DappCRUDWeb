@@ -31,6 +31,14 @@ contract UserList {
     delete users[i];
   }
 
+  function getAllId() view public returns(uint[] memory){
+    uint[] memory allId = new uint[](users.length); //needs to be known length to work
+    for(uint i = 0 ; i < users.length ; i++){
+      allId[i] = users[i].id;
+    }
+    return allId;
+  }
+
   function find(uint id) view internal returns(uint) {
     for(uint i = 0; i < users.length; i++) {
       if(users[i].id == id) {

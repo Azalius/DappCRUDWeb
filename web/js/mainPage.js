@@ -13,7 +13,9 @@ async function changeMotd(){
     if (newMotd !== null){
       contractMotd.methods
       .updateMessage(newMotd)
-      .send({from: accounts[0]}).then(() => alert("MOTD updated"))
+      .send({from: accounts[0]}).then(() => alert("MOTD updated")).catch(()=>{
+        console.log("Only owner can update MOTD")
+      })
   }
 }
 
